@@ -1,4 +1,4 @@
-import { SpecData, SpecMethod, Spec } from './decorators/spec-decorators';
+import { SpecData, SpecMethod, Spec } from '../';
 
 @Spec('TestService')
 class TestSpec {
