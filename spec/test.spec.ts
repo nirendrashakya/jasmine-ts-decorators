@@ -16,7 +16,7 @@ class TestSpec {
     expect(5).toBe(5);
   }
 
-  @SpecMethod('should substract two numbers')
+  @SpecMethod()
   @SpecData('A', 10, 2, 8)
   @SpecData('B', 1, 3, -2)
   subTestData(a: number, b: number, expected: number) {

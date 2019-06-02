@@ -17,14 +17,14 @@ export function Spec(name?: string) {
   };
 }
 
-export function SpecMethod(description: string) {
+export function SpecMethod(name?: string) {
   return function(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
     //console.log('@SpecMethod');
     let original = descriptor.value;
     descriptor.value = () => {
       const specData = descriptor[specDataPropName];
       if (specData) {
-        describe(description || propertyKey, () => {
+        describe(name || propertyKey, () => {
           for (let i = specData.length - 1; i >= 0; i--) {
             const test = <TestDefinition>specData[i];
             it(test.name, () => {
@@ -33,7 +33,7 @@ export function SpecMethod(description: string) {
           }
         });
       } else {
-        it(description || propertyKey, () => {
+        it(name || propertyKey, () => {
           original();
         });
       }
