@@ -1,0 +1,21 @@
+{
+  "name": "test-decorators",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-ts --config=spec/config/jasmine.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "3.4.0",
+    "jasmine-ts": "0.3.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.3.13",
+    "jasmine-spec-reporter": "4.2.1",
+    "ts-node": "3.2.0",
+    "typescript": "3.5.1"
+  }
+}
