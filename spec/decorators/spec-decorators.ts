@@ -4,7 +4,7 @@ const specMethodPropName = 'specMethod';
 export function Spec(name?: string) {
   return function(constructor: Function) {
     const specName = name || constructor['name'];
-    console.log('@Spec', specName);
+    //console.log('@Spec', specName);
     describe(specName, () => {
       let obj = Object.create(constructor.prototype);
       let props = Object.keys(constructor.prototype);
@@ -19,7 +19,7 @@ export function Spec(name?: string) {
 
 export function SpecMethod(description: string) {
   return function(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
-    console.log('@SpecMethod');
+    //console.log('@SpecMethod');
     let original = descriptor.value;
     descriptor.value = () => {
       const specData = descriptor[specDataPropName];
@@ -48,7 +48,7 @@ export function SpecMethod(description: string) {
 
 export function SpecData(name: string, ...args: any) {
   return function(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
-    console.log('@SpecData');
+    //console.log('@SpecData');
     if (args && descriptor.value) {
       if (!descriptor[specDataPropName]) {
         // debugger;

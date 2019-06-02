@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine-ts --config=spec/config/jasmine.json"
+    "test": "jasmine-ts --config=spec/config/jasmine.json",
+    "test:watch": "nodemon --ext ts --exec npm test"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@types/jasmine": "^3.3.13",
     "jasmine-spec-reporter": "4.2.1",
+    "nodemon": "1.19.1",
     "ts-node": "3.2.0",
     "typescript": "3.5.1"
   }
