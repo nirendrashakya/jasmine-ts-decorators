@@ -1,6 +1,6 @@
 {
   "name": "jasmine-ts-decorators",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Jasmine Typescript Decorators",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,19 @@
     "prebuild": "npm run clean",
     "build": "tsc"
   },
-  "author": "",
+  "keywords": [
+    "jasmine",
+    "typescript",
+    "decorators",
+    "data driven testing",
+    "jasmine-ts"
+  ],
+  "author": "Nirendra Shakya <nirendrashakya@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirendrashakya/jasmine-ts-decorators.git",
+    "web": "https://github.com/nirendrashakya/jasmine-ts-decorators"
+  },
   "license": "ISC",
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",

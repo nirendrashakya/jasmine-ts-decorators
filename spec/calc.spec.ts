@@ -1,4 +1,4 @@
-import { SpecData, SpecMethod, Spec } from '..';
+import { SpecData, SpecMethod, Spec } from '../index';
 import { Calc } from './lib/calc';
 
 @Spec('Calc')

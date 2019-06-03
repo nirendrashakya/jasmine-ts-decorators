@@ -6,7 +6,7 @@ export function Spec(name?: string) {
     const specName = name || constructor['name'];
     describe(specName, () => {
       let obj = Object.create(constructor.prototype);
-      let props = Object.keys(constructor.prototype);
+      let props = Object.getOwnPropertyNames(constructor.prototype);
       props.forEach(prop => {
         if (constructor.prototype[specMethodPropName] && constructor.prototype[specMethodPropName].hasOwnProperty(prop)) {
           constructor.prototype[prop].apply(obj);
@@ -26,13 +26,13 @@ export function SpecMethod(name?: string) {
           for (let i = specData.length - 1; i >= 0; i--) {
             const test = <TestDefinition>specData[i];
             it(test.name, () => {
-              original(...test.data);
+              original.apply(target, test.data);
             });
           }
         });
       } else {
         it(name || propertyKey, () => {
-          original();
+          original.apply(target);
         });
       }
     };
