@@ -1,6 +1,6 @@
 {
   "name": "jasmine-ts-decorators",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Jasmine Typescript Decorators",
   "main": "dist/index.js",
   "scripts": {

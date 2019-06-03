@@ -3,7 +3,8 @@
     "target": "es2015",
     "experimentalDecorators": true,
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "module": "CommonJs"
   },
   "include": ["**/*.ts"],
   "exclude": ["spec/**/*.ts", "node_modules"]
