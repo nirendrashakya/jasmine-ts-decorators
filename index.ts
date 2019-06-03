@@ -1,1 +1,1 @@
-export * from './decorators/spec-decorators';
+export * from './lib/decorators/spec-decorators';
