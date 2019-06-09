@@ -16,7 +16,7 @@ export function Spec(name?: string) {
   };
 }
 
-export function SpecMethod(name?: string) {
+export function SpecMethod(name?: string, timeout?: number) {
   return function(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
     let original = descriptor.value;
     descriptor.value = () => {
@@ -25,15 +25,23 @@ export function SpecMethod(name?: string) {
         describe(name || propertyKey, () => {
           for (let i = specData.length - 1; i >= 0; i--) {
             const test = <TestDefinition>specData[i];
-            it(test.name, () => {
-              original.apply(target, test.data);
-            });
+            it(
+              test.name,
+              async () => {
+                await original.apply(target, test.data);
+              },
+              timeout || jasmine.DEFAULT_TIMEOUT_INTERVAL
+            );
           }
         });
       } else {
-        it(name || propertyKey, () => {
-          original.apply(target);
-        });
+        it(
+          name || propertyKey,
+          async () => {
+            await original.apply(target);
+          },
+          timeout || jasmine.DEFAULT_TIMEOUT_INTERVAL
+        );
       }
     };
 

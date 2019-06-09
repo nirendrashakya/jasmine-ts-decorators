@@ -4,9 +4,29 @@ import { Calc } from './lib/calc';
 @Spec('Calc')
 export class CalcSpec {
   @SpecMethod('should add two numbers')
-  SumTest() {
+  async SumTest() {
     const sum = Calc.Sum(5, 6);
     expect(sum).toBe(11);
+  }
+
+  @SpecMethod('should add two numbers async')
+  async SumTestAsync() {
+    let expected = await this.GetAsyncVal(11);
+    const sum = Calc.Sum(5, 6);
+    expect(sum).toBe(expected);
+  }
+
+  @SpecMethod('should add two numbers async with custom timeout', 6000)
+  async SumTestAsyncTimeout() {
+    let expected = await this.GetAsyncVal(11, 5000);
+    const sum = Calc.Sum(5, 6);
+    expect(sum).toBe(expected);
+  }
+
+  async GetAsyncVal(val: number, timeout = 2000): Promise<number> {
+    return new Promise<number>(resolve => {
+      setTimeout(() => resolve(val), timeout);
+    });
   }
 
   @SpecMethod('should diff two numbers')
