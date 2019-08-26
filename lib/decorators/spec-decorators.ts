@@ -1,11 +1,11 @@
-const specDataPropName = 'specData';
-const specMethodPropName = 'specMethod';
+const specDataPropName =  Symbol('specData');
+const specMethodPropName = Symbol('specMethod');
 
 export function Spec(name?: string) {
   return function(constructor: Function) {
     const specName = name || constructor['name'];
     describe(specName, () => {
-      let obj = Object.create(constructor.prototype);
+      let obj = new (constructor as any)();
       let props = Object.getOwnPropertyNames(constructor.prototype);
       props.forEach(prop => {
         if (constructor.prototype[specMethodPropName] && constructor.prototype[specMethodPropName].hasOwnProperty(prop)) {

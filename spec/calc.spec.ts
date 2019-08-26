@@ -3,6 +3,9 @@ import { Calc } from './lib/calc';
 
 @Spec('Calc')
 export class CalcSpec {
+  constructor() {
+    console.log('ctor');
+  }
   @SpecMethod('should add two numbers')
   async SumTest() {
     const sum = Calc.Sum(5, 6);
