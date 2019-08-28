@@ -3,13 +3,14 @@ import { Calc } from './lib/calc';
 
 @Spec('Calc')
 export class CalcSpec {
+  expectedSum = 11;
   constructor() {
     console.log('ctor');
   }
   @SpecMethod('should add two numbers')
   async SumTest() {
     const sum = Calc.Sum(5, 6);
-    expect(sum).toBe(11);
+    expect(sum).toBe(this.expectedSum);
   }
 
   @SpecMethod('should add two numbers async')

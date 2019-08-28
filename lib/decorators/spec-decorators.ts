@@ -1,17 +1,18 @@
-const specDataPropName =  Symbol('specData');
+const specDataPropName = Symbol('specData');
 const specMethodPropName = Symbol('specMethod');
 
 export function Spec(name?: string) {
-  return function(constructor: Function) {
-    const specName = name || constructor['name'];
+  return function(ctor: Function) {
+    const specName = name || ctor['name'];
     describe(specName, () => {
-      let obj = new (constructor as any)();
-      let props = Object.getOwnPropertyNames(constructor.prototype);
-      props.forEach(prop => {
-        if (constructor.prototype[specMethodPropName] && constructor.prototype[specMethodPropName].hasOwnProperty(prop)) {
-          constructor.prototype[prop].apply(obj);
+      const objCtor = ctor.prototype.constructor;
+      let obj = new objCtor();
+      let props = Object.getOwnPropertyNames(ctor.prototype);
+      for (const prop of props) {
+        if (ctor.prototype[specMethodPropName] && ctor.prototype[specMethodPropName].hasOwnProperty(prop)) {
+          obj[prop](obj);
         }
-      });
+      }
     });
   };
 }
@@ -19,7 +20,8 @@ export function Spec(name?: string) {
 export function SpecMethod(name?: string, timeout?: number) {
   return function(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
     let original = descriptor.value;
-    descriptor.value = () => {
+    descriptor.value = (obj: Object) => {
+
       const specData = descriptor[specDataPropName];
       if (specData) {
         describe(name || propertyKey, () => {
@@ -28,7 +30,7 @@ export function SpecMethod(name?: string, timeout?: number) {
             it(
               test.name,
               async () => {
-                await original.apply(target, test.data);
+                await original.apply(obj, test.data);
               },
               timeout || jasmine.DEFAULT_TIMEOUT_INTERVAL
             );
@@ -38,7 +40,7 @@ export function SpecMethod(name?: string, timeout?: number) {
         it(
           name || propertyKey,
           async () => {
-            await original.apply(target);
+            await original.apply(obj);
           },
           timeout || jasmine.DEFAULT_TIMEOUT_INTERVAL
         );
