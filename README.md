@@ -1,5 +1,7 @@
 **Jasmine-ts-decorators**
+<br>
 [![NPM version](https://img.shields.io/npm/v/simple-git.svg)](https://www.npmjs.com/package/jasmine-ts-decorators)
+<br>
 <p>
   Jasmine TypeScript Decorators for readable and data-driven unit tests.<br>
   <em><b>Note:</b> This library is based on experimental decorators which are subject to change</em>
